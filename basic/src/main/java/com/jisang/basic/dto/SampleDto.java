@@ -33,7 +33,6 @@ public class SampleDto {
 
     // 문자열일 경우 null 또는 빈 문자열 또는 공백으로된 문자열이 올 수 없도록 지정
     @NotBlank   
-
     private String notBlank;
 
     // RequestBody로 받아오는 데이터는 Wrapper 클래스 타입으로 데이터를 받는 것이 좋음
