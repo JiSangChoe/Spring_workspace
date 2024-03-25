@@ -62,6 +62,12 @@ public class SampleDto {
     @Email
     private String email;
 
+    // 결론
+    // NotNull -> null만 걸러냄 ("", "   " 같은 데이터는 허용)
+    // NotEmpty -> null, "" 걸러냄 ("   " 데이터는 허용)
+    // NotBlank -> null, "", "   " 데이터 전부 걸러낸다. 
+    // 결론은 NotBlank를 써야 모두 막는다는거죠
+
     // 정규식을 이용해 문자열의 패턴 검사를 진행
     // 전화번호, 이메일, url, 주민등록번호, 비밀번호
     // 영어로만된 문자열, 한글로만된 문자열, 숫자로만 된 문자열
