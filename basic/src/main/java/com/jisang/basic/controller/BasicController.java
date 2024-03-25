@@ -1,5 +1,6 @@
 package com.jisang.basic.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -8,6 +9,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.jisang.basic.service.BasicService;
+import com.jisang.basic.service.implement.BasicServiceImplement;
+
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 // Controller 레이어:
 // - 클라이언트와 서버간의 접점
@@ -23,12 +30,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 // HTTP localhost:4000/main/**
 @RequestMapping("/main")
+// final로 지정된 생성자에 대해 
+@RequiredArgsConstructor
+// @AllArgsConstructor
 public class BasicController {
     
+    // private BasicService service;
+
+    // @Autowired // BasicService service 의존성 주입을 제어 역전을 통해 주입
+    // 생성자를 통해서 걸때는 @Autowired 안씀
+    // public BasicController(BasicService service) {
+    //     this.service =service;
+    // }
+
+    private final BasicService service;
+
     // HTTP GET localhost:4000/main/
     @RequestMapping(value = "/", method = {RequestMethod.GET})
     public String getHello(){
-        return "Hello Springboot!!";
+        
+        return service.getHello();
     }
 
     // HTTP GET Method : 클라이언트가 서버로부터 데이터를 받기를 원할 때 사용하는 메서드
@@ -36,7 +57,8 @@ public class BasicController {
     // 전송할 데이터의 길이가 제한되어 있음, 전송 데이터가 URL에 표시되기 때문에 보안상 문제가 발생할 수 있음
     @GetMapping("/apple")
     public String getApple() {
-        return "Get Mapping으로 만든 메서드";
+        
+        return service.getApple();
     }
 
     // HTTP POST Method : 클라이언트가 서버에 데이터를 작성하기 원할 때 사용하는 메서드
