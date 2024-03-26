@@ -39,9 +39,7 @@ public class GetController {
         return var;
     }
 
-    // http://localhost:8080/api/v1/get-api/request1?
-    // name = flature&
-    // email = thinkground.flature@gmail.com&
+    // http://localhost:8080/api/v1/get-api/request1?name=flature&email=thinkground.flature@gmail.com&organization=thinkground
     @GetMapping(value = "/request1")
     public String getRequestParm1(
         @RequestParam String name,
