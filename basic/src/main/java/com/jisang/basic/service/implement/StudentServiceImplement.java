@@ -37,6 +37,11 @@ public class StudentServiceImplement implements StudentService {
         Integer studentNumber = dto.getStudentNumber();
         String address = dto.getAddress();
 
+        // 0. student 테이블에 해당하는 Primary key를 가지고 레코드가 존재하는지 확인
+        // 존재하는지 않하는지 검색만 함 / 존재하지 않는 학생넘버에 대한 처리
+        boolean isExistedStudent = studentRepository.existsById(studentNumber);
+        if (!isExistedStudent) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("존재하지 않는 학생입니다.");
+
         // 원래는 한줄 StudentEntity studentEntity = studentRepository.findById(studentNumber).get();
         // 1. student 클래스로 접근(StudentRepository 사용)
         StudentEntity studentEntity = studentRepository.
@@ -44,7 +49,19 @@ public class StudentServiceImplement implements StudentService {
         findById(studentNumber).get();
         // 3. 검색된 인스턴스의 address 값을 dto.address로 변경
         studentEntity.setAddress(address);
-        return null;
+        // 4. 변경한 인스턴스를 데이터베이스에 저장
+        // repository.save()는 레코드를 생성할 때 쓰이지만 수정할 때도 동일하게 사용됨
+        studentRepository.save(studentEntity);
+
+        return ResponseEntity.status(HttpStatus.OK).body("성공!");
+    }
+
+    @Override
+    public ResponseEntity<String> deleteStudent(Integer studentNumber) {
+
+        studentRepository.deleteById(studentNumber);
+        
+        return ResponseEntity.status(HttpStatus.OK).body("성공");
     }
     
 }
