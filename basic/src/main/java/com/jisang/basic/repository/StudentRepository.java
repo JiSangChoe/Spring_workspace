@@ -13,7 +13,6 @@ import com.jisang.basic.entity.StudentEntity;
 // - interface에 @Repository를 사용한 이유
 // - JPA를 사용하면 JpaRepository 인터페이스를 상속받은 인터페이스의 구현체를 JPA가 자동으로 생성
 @Repository
-
 public interface StudentRepository 
 // JpaRepository<T, ID> : 
 // - JPA 기반의 Repository를 구현하는 주요 인터페이스
