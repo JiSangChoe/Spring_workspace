@@ -3,6 +3,8 @@ package com.jisang.basic.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.jisang.basic.entity.StudentEntity;
@@ -52,4 +54,51 @@ extends JpaRepository<StudentEntity, Integer> {
 
     // address가 '서울특별시' 이면서 graduation이 true인 레코드가 존재하는가? -> true/false
     boolean existsByAddressAndGraduation(String address, Boolean graduation);
+
+    // @Query :
+    // - 쿼리 메서드 생성 방식만으로는 실제 SQL을 작성하는 데 한계가 있음
+    // - 쿼리 메서드는 복잡한 쿼리, 조인, 서브쿼리, 그룹화를 사용할 수 없음
+    // - 직접 SQL문으로 쿼리를 생성하도록 하는 어노테이션
+
+    // JPQL (Java Persistence Query Language) :
+    // - 표준 SQL과 매우 흡사하지만 Entity명과 Entity 속성으로 쿼리를 작성하는 방법
+    @Query(value = 
+        "SELECT s FROM student s WHERE s.student_number = ?1 AND s.age > ?2",
+        nativeQuery = false
+    )
+    List<StudentEntity> getStudent2(Integer studentNumber, Integer age);
+
+
+    // Native SQL : 
+    // - 현재 사용하고 있는 RDBMS의 SQL 문법을 그대로 따르는 방식
+    @Query(                         
+        value = 
+        "SELECT " + 
+            "student_number AS studentNumber," + 
+            "name, " + 
+            "age, " + 
+            "address, " + 
+            "graduation " +                 // (?1)은 첫번째 매개변수 (?2)은 두번째 매개변수
+            "FROM student WHERE student_number = ?1 " + 
+            "AND age > ?2; ",  
+        nativeQuery = true
+    )
+    List<StudentEntity> getStudent(Integer studentNumber, Integer age);
+
+    @Query(                         
+        value = 
+        "SELECT " + 
+            "student_number AS studentNumber," + 
+            "name, " + 
+            "age, " + 
+            "address, " + 
+            "graduation " +                 
+            "FROM student WHERE student_number = :student_number " + 
+            "AND age > :age ",  
+        nativeQuery = true
+    )
+    List<StudentEntity> getStudent3(
+        @Param("student_number") Integer studentNumber, 
+        @Param("age") Integer age
+    );
 }
