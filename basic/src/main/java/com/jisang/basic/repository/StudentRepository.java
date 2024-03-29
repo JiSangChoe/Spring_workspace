@@ -1,5 +1,7 @@
 package com.jisang.basic.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -21,5 +23,33 @@ public interface StudentRepository
 // - 매개타입 T : 해당 Repository가 어떤 Entity의 Repository인지 나타내는 매개타입
 // - 매개타입 ID : 해당 Repository에서 사용하는 Entity의 Primary key 데이터 타입을 지정하는 매개타입
 extends JpaRepository<StudentEntity, Integer> {
+    // Student 테이블에서 address가 '서울특별시'인 레코드를 조회
 
+    // SQL : 
+    // SELECT * FROM student 
+    // WHERE address = '서울특별시'
+    // 결과값의 갯수 0~무한대임 -> List<> 사용
+    List<StudentEntity> findByAddress(String address);
+
+    // SQL :
+    // SELECT * FROM student
+    // WHERE graduation IS true
+    // ORDER BY age DESC;
+    // 결과값의 갯수 0~무한대임 -> List<> 사용
+    List<StudentEntity> findByGraduationOrderByAgeDesc(Boolean graduation);
+
+    // SQL : 
+    // SELECT * FROM student
+    // WHERE student_number = 5
+    // AND age > 20;
+    // 결과값의 갯수 0~1개임
+    StudentEntity findByStudentNumberAndAgeGreaterThan(Integer StudentNumber, Integer age);
+
+    // SQL :
+    // SELECT count(*) FROM student
+    // WHERE graduation IS false
+    int countByGraduation(Boolean graduation);
+
+    // address가 '서울특별시' 이면서 graduation이 true인 레코드가 존재하는가? -> true/false
+    boolean existsByAddressAndGraduation(String address, Boolean graduation);
 }
