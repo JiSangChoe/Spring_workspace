@@ -4,7 +4,7 @@ spring init
 	-> controller 생성 (@RestController, @RequestMapping)
 	-> 각 HTTP 요청에 따른 method 생성 (@Get, Post, Put, Patch, DeleteMapping)
 		--> 브라우저의 스크립트로 요청이 넘어왔을 때 같은 출처가 아니라면 CORS 정책으로 막힘
-		--> CorsConfig 클래스를 생성 Cors 정책 변경 (@Configuration, WebMvcConfigurer
+		--> CorsConfig 클래스를 생성 Cors 정책 변경 (@Configuration, WebMvcConfigurer)
 		--> CorsRegistry 객체를 설정 (addMapping: URL 패턴 지정, allowedMethod: HTTP method 지정, allowedOrigins: 출처 지정)
 
 	-> 각 HTTP 요청에서 데이터를 받음 (@RequestParam, @PathVariable, @RequestBody)
