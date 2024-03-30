@@ -1,5 +1,7 @@
 package com.jisang.testproject.data.dto;
 
+import com.jisang.testproject.data.entity.ProductEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,12 +21,12 @@ public class ProductDto {
     private int productStock;
 
     public ProductEntity toEntity(){
-        return ProductEntity.Builder()
+        return ProductEntity.builder()
         .productId(productId)
         .productName(productName)
         .productPrice(productPrice)
         .productStock(productStock)
-        .Build();
+        .build();
     }
     
 }
