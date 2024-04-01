@@ -97,6 +97,7 @@ extends JpaRepository<StudentEntity, Integer> {
             "AND age > :age ",  
         nativeQuery = true
     )
+    // @Param 위의 형식과 비슷하지만 사용하는걸 지향
     List<StudentEntity> getStudent3(
         @Param("student_number") Integer studentNumber, 
         @Param("age") Integer age
