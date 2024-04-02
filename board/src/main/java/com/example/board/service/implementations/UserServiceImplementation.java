@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.board.dto.response.ResponseDto;
-import com.example.board.dto.response.User.GetUserResponseDto;
+import com.example.board.dto.response.user.GetUserResponseDto;
 import com.example.board.repository.UserRepository;
 import com.example.board.service.UserService;
 
