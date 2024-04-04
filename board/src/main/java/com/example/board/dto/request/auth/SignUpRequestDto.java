@@ -1,13 +1,13 @@
 package com.example.board.dto.request.auth;
 
-import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.Length;
+
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
@@ -18,7 +18,7 @@ public class SignUpRequestDto {
     private String email;
 
     @NotBlank
-    @Range(min=8, max=20)
+    @Length(min=8, max=20)
     private String password;
 
     @NotBlank
@@ -26,7 +26,7 @@ public class SignUpRequestDto {
 
     @NotBlank
     @Pattern(regexp = "^[0-9]{10,12}$")
-    private String tellNumber;
+    private String telNumber;
 
     @NotBlank
     private String address;
