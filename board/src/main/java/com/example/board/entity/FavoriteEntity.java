@@ -8,11 +8,13 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity(name="favorite")
 @Table(name="favorite")
 @IdClass(FavoritePk.class) // 참조하고 있는 pk가 다른 타입이므로 class로 묶음
