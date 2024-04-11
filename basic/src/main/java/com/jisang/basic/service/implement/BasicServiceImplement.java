@@ -2,7 +2,10 @@ package com.jisang.basic.service.implement;
 
 import org.springframework.stereotype.Service;
 
+import com.jisang.basic.provider.JwtProvider;
 import com.jisang.basic.service.BasicService;
+
+import lombok.RequiredArgsConstructor;
 
 // Service 레이어 : 
 // - 실제 비즈니스 로직 (연산)을 실행하는 영역
@@ -14,7 +17,10 @@ import com.jisang.basic.service.BasicService;
 // Spring Bean : 제어의 역전을 통해서 의존성 주입시 해당 클래스의 인스턴스를 Spring Framework가 제어하는 요소 -> 스프링부트가 관리하는 인스턴스
 // bean = 스프링 컨테이너가 관리해 주는 재사용가능한 컴포넌트 
 @Service
+@RequiredArgsConstructor
 public class BasicServiceImplement implements BasicService {
+
+    private final JwtProvider jwtProvider;
 
     @Override
     public String getHello() {
@@ -24,6 +30,11 @@ public class BasicServiceImplement implements BasicService {
     @Override
     public String getApple() {
         return "Get Mapping으로 만든 메서드";
+    }
+
+    @Override
+    public String getJwt(String principal) {
+        return jwtProvider.create(principal);
     }
     
 }

@@ -63,7 +63,7 @@ extends JpaRepository<StudentEntity, Integer> {
     // JPQL (Java Persistence Query Language) :
     // - 표준 SQL과 매우 흡사하지만 Entity명과 Entity 속성으로 쿼리를 작성하는 방법
     @Query(value = 
-        "SELECT s FROM student s WHERE s.student_number = ?1 AND s.age > ?2",
+        "SELECT s FROM student s WHERE s.studentNumber = ?1 AND s.age > ?2",
         nativeQuery = false
     )
     List<StudentEntity> getStudent2(Integer studentNumber, Integer age);
