@@ -1,0 +1,16 @@
+권한에 따른 접근허용
+
+GET http://localhost:4000/auth/qwer
+
+토큰발행
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJxd2VyIiwiaWF0IjoxNzEzMTcwMDU1LCJleHAiOjE3MTMxODQ0NTV9.PHJjXiV1BvE6VpbQMgBv_nelxHgk7FwGS59MfPdhBJc
+
+DELETE http://localhost:4000/student/1 -> 403
+----------------------------------------------------------------------------------
+GET http://localhost:4000/auth/student -> 토큰 발행
+
+발행된 토큰
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdHVkZW50IiwiaWF0IjoxNzEzMTcwMDk1LCJleHAiOjE3MTMxODQ0OTV9.ZMxfTFz1Juz0MeSle8LEWB86WbKs9aAuH6hG9b5A-zc
+
+bearer Token에서 Token에 토큰 넣기
+DELETE http://localhost:4000/student/1 -> 200
