@@ -65,7 +65,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 
             // 3-1. 인증된 사용자라는 의미의 UsernamePasswordAuthenticationToken 객체를 생성
             // 사용자의 이름, 비밀번호, 사용자 권한)
-            AbstractAuthenticationToken authenticationToken                           // 사용자에게는 특별한 권한이 없다. = 권한에 대한 이름이 없다.
+            AbstractAuthenticationToken authenticationToken 
+                // 사용자에게는 특별한 권한이 없다. = 권한에 대한 이름이 없다.
                 = new UsernamePasswordAuthenticationToken(subject, null, roles);
 
             // 3-2. 인증 요청에 대한 세부정보를 등록 / 웹 인증 정보를 해당 리퀘스트에 등록
