@@ -29,6 +29,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 // OncePerRequestFilter :
 // - 해당 클래스를 필터 클래스로 지정하는 추상클래스
+// - OncePerRequestFilter 상속받으면 추가로 꼭 오버라이드해줘야함
 public class JwtAuthenticationFilter extends OncePerRequestFilter{
 
     private final JwtProvider jwtProvider;
@@ -105,6 +106,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 
         // 현재 요청이 Bearer Token Authentication이 맞는지 확인
         // 문자열의 시작이 'Bearer '로 시작하는지 여부
+        // Bearer 다음 띄어쓰기 주위하기
         boolean isBearer = authorization.startsWith("Bearer ");
         if (!isBearer) return null;
 
